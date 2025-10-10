@@ -1,0 +1,12 @@
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+}
+.item{
+    flex-basis: 60px;
+    text-align: center;
+    padding: 10px;
+}

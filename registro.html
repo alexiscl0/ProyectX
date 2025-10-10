@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrarse</title>
+</head>
+<body>
+  <h1>Crear una cuenta</h1>
+
+  <form action="procesar_registro.php" method="post">
+    <label for="nombre">Nombre completo:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="correo">Correo electrónico:</label><br>
+    <input type="email" id="correo" name="correo" required><br><br>
+
+    <label for="contraseña">Contraseña:</label><br>
+    <input type="password" id="contraseña" name="contraseña" required><br><br>
+
+    <label for="confirmar">Confirmar contraseña:</label><br>
+    <input type="password" id="confirmar" name="confirmar" required><br><br>
+
+    <input type="submit" value="Registrarse">
+  </form>
+
+  <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+</body>
+</html>
