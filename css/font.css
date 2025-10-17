@@ -1,0 +1,28 @@
+/*Monserrat*/
+@font-face {
+    font-family: "Monserrat_Regular";
+    src: url(../Font/Monserrat/Montserrat-Regular.ttf) format("trueType");
+}
+
+/*Raleway*/
+@font-face {
+    font-family: "Raleway_semibold";
+    src: url(../Font/Raleway/Raleway-SemiBold.ttf) format("trueType");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Raleway";
+    src: url(../Font/Raleway/Raleway-Regular.ttf) format("trueType");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Raleway_negrita";
+    src: url(../Font/Raleway/Raleway-Black.ttf) format("trueType");
+    font-weight: 900;
+}
+
+/*Google Sans*/
+@font-face {
+    font-family: "GoogleSans";
+    src: url(../Font/Google_Sans_Code/GoogleSansCode-Medium.ttf) format("trueType");
+}
