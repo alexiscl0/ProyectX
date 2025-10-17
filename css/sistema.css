@@ -4,6 +4,44 @@ body{
     background-color: black;
     color:white
 }
+header {
+  background: #000000;          /* fondo negro */
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header p {
+  color: #3b82f6;               /* azul vivo (ParkPro estilo tech) */
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.menu {
+  display: flex;
+  gap: 24px;
+}
+
+.menu .item {
+  text-decoration: none;
+  color: #ffffff;  
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.menu .item:hover {
+  color: #3b82f6;
+}
+
 #negrita{
     font-family: "Raleway_negrita";
     font-weight: 900;
