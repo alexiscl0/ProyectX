@@ -21,8 +21,13 @@
     font-weight: 900;
 }
 
-/*Google Sans*/
+/*Comfortaa*/
 @font-face {
-    font-family: "GoogleSans";
-    src: url(../Font/Google_Sans_Code/GoogleSansCode-Medium.ttf) format("trueType");
+    font-family: "Comfortaa";
+    src: url(../Font/Comfortaa/Comfortaa-Medium.ttf) format("trueType");
+}
+/*Kiwi Maru*/
+@font-face {
+    font-family: "Kiwi_Maru";
+    src: url(../Font/Kiwi_Maru/KiwiMaru-Medium.ttf) format("trueType");
 }

@@ -1,0 +1,111 @@
+/* ==============================
+   ESTILOS GENERALES
+============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #00509e, #003366);
+  color: #333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==============================
+   ENCABEZADO
+============================== */
+h1 {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ==============================
+   FORMULARIO DE REGISTRO
+============================== */
+form {
+  background-color: #ffffff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 420px;
+  text-align: left;
+}
+
+label {
+  font-weight: 600;
+  color: #003366;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #00509e;
+  outline: none;
+}
+
+/* ==============================
+   BOTÓN DE REGISTRO
+============================== */
+input[type="submit"] {
+  width: 100%;
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #00509e;
+  transform: scale(1.03);
+}
+
+/* ==============================
+   ENLACE FINAL
+============================== */
+p {
+  margin-top: 25px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+p a {
+  color: #ffcc00;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */

@@ -1,28 +1,50 @@
-body{
-    margin: 0;
-    font-family: "Raleway";
-    background-color: black;
-    color:white
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family: "Comfortaa";
+  background-color: black;
+  color: white;
+}
+.img_gradiante{
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  z-index: -2;
+}
+.layer-blur{
+  position: absolute;
+  margin-top: 200px;
+  height: 0;
+  width: 30rem;
+  top: 20%;
+  right: 0;
+  box-shadow: 0 0 700px 15px white;
+  rotate: -30deg;
+  z-index: -2;
 }
 header {
-  background: #000000;          /* fondo negro */
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: #000000;
+  padding: 14px 0
 }
 
 header .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  margin: 0;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 9999;
 }
 
-header p {
-  color: #3b82f6;               /* azul vivo (ParkPro estilo tech) */
-  font-size: 1.4rem;
-  font-weight: 700;
+header h1 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 200;
   margin: 0;
 }
 
@@ -33,41 +55,126 @@ header p {
 
 .menu .item {
   text-decoration: none;
-  color: #ffffff;  
+  color: inherit;
   font-size: 0.95rem;
   font-weight: 500;
+  letter-spacing: 0.1rem;
+  transition: color 0.2s ease;
 }
 
 .menu .item:hover {
-  color: #3b82f6;
+  color: #c3c4c69d;
 }
 
-#negrita{
-    font-family: "Raleway_negrita";
-    font-weight: 900;
+#negrita {
+  font-family: "Raleway_negrita";
+  font-weight: 900;
 }
-h1{
-    font-family: "Raleway";
-    font-weight: 400;
-    font-size: 3.5em;
-
+h1 {
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 3.5em;
 }
 h2 {
-    font-size: 2.5em;
+  font-size: 2.5em;
 }
 h3 {
-    font-size: 2em;
+  font-size: 2em;
 }
-p{
-    font-size: 1.2em
+p {
+  font-size: 1.2em;
 }
-button{
-    background: rgb(59, 194, 204);
-    color:white;
-    font-size: 17px;
-    font-family: "Raleway_semibold";
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 1px solid rgb(59, 194, 204);
-    border-radius: 10px;
+
+.btn_signing{
+  background: rgb(140, 140, 140);
+  color: #000000;
+  text-decoration: none;
+  padding: 0.8rem  2rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
+
+.btn_signing:hover{
+  background-color: #ffffff;
+}
+header, main{
+  position: relative;
+  z-index: 100;
+  isolation: isolate;
+}
+
+.Esfera_3d {
+  position: absolute;
+  top: 100px;
+  right: -10%;
+  height: 45vh;
+  width: 150vh;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(90vh - 6rem);
+  overflow: hidden;
+}
+
+.content{
+  max-width: 40rem;
+  margin-left: 10%;
+}
+
+.button{
+  position: relative;
+  width: 18rem;
+  height: 2.5rem;
+  border-radius: 20px;
+  background:linear-gradient(to  right, #65656555, #427da7, #005fc5, #0053a0, #75757500, #65656555);
+  background-size: 200%;
+  animation: animationGradient 2.5s linear infinite;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); 
+}
+
+@keyframes animationGradient{
+  to{
+    background-position: 200%;
+  }
+}
+
+.button .btn_register{
+  position: absolute;
+  inset: 3px 3px 3px 3px;
+  background-color: #000000;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  
+}
+.button .btn_register:hover{
+  color: #5300a0;
+}
+
+
+
+button {
+  background: rgb(59, 194, 204);
+  color: white;
+  font-size: 17px;
+  font-family: "Raleway_semibold";
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid rgb(59, 194, 204);
+  border-radius: 10px;
+}
+
