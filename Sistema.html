@@ -1,6 +1,7 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/sistema.css">
@@ -8,9 +9,9 @@
     <title>ParkPro</title>
 </head>
 <body>
+    <img class="img_gradiante" src="img/gradient.png" alt="gradiante">
+    <div class="layer-blur"></div>
     <header>
-        <img class="img_gradiante" src="img/gradient.png" alt="gradiante">
-        <div class="layer-blur"></div>
         <div class="container">
             <h1>PARKPRO</h1>
             <nav class="menu">
@@ -26,8 +27,14 @@
         <div class="content">
             <div id="hero">
                 <div class="text">
-                    <h1><span id="negrita_title">ENTRA A PARKPRO</span><br>¡Tu auto, siempre seguro!<br></h1>
+                    <h1><span id="negrita_title">ENTRA A <span id="logo">PARKPRO</span></span><br>¡Tu auto, siempre seguro!<br></h1>
                     <p>Ofrecemos un servicio de estacionamiento seguro, moderno y accesible para todos. Nuestro objetivo es brindarte tranquilidad cada vez que dejes tu vehículo con nosotros.</p>
+                    <div class="social_icons">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-github"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
                     <div class="button">
                         <a href="registro.html" class="btn_register">Entra Hoy!</a>
                     </div>
@@ -84,7 +91,7 @@
                                     <li>Auto: xsoles</li>
                                     <li>Camiones: zsoles</li>
                                 </ul>
-                                <a href="promos.html" class="button">+ Info</a>
+                                <a href="promos.html" class="button_info">+ Info</a>
                             </div>
                         </div>
                         <div class="modalidad">
@@ -95,7 +102,7 @@
                                     <li>Auto: xsoles</li>
                                     <li>Camiones: zsoles</li>
                                 </ul>
-                                <a href="promos.html" class="button">+ Info</a>
+                                <a href="promos.html" class="button_info">+ Info</a>
                             </div>
                         </div>
                         <div class="modalidad">
@@ -106,7 +113,7 @@
                                     <li>Auto: xsoles</li>
                                     <li>Camiones: zsoles</li>
                                 </ul>
-                                <a href="promos.html" class="button">+ Info</a>
+                                <a href="promos.html" class="button_info">+ Info</a>
                             </div>
                         </div>
                     </div>
@@ -122,6 +129,7 @@
         <p>&copy; ParkPro 2025</p>
     </footer>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.96/build/spline-viewer.js"></script>
+    <script src="js/sistema.js"></script>
     
 </body>
 </html>
