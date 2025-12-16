@@ -1,104 +1,335 @@
-/* ==============================
-   ESTILOS GENERALES
-============================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: linear-gradient(to right, #00509e, #003366);
-    color: #333;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: 'Poppins', sans-serif;
+  background: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
-/* ==============================
-   CONTENEDOR DEL FORMULARIO
-============================== */
-form {
-    background-color: #ffffff;
-    padding: 40px 50px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
-    text-align: left;
+/*Particulas de fondo*/
+.particles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
-h1 {
-    text-align: center;
-    color: #003366;
-    margin-bottom: 30px;
-    font-size: 2rem;
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: float linear infinite;
 }
 
-/* ==============================
-   CAMPOS DEL FORMULARIO
-============================== */
-label {
-    font-weight: 600;
-    color: #003366;
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px) scale(1);
+    opacity: 0;
+  }
 }
 
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+
+/* contenedor login */
+.login-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 450px;
+  padding: 3rem;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 95, 197, 0.3);
+  animation: slideUp 0.8s ease-out;
 }
 
-input[type="email"]:focus,
-input[type="password"]:focus {
-    border-color: #00509e;
-    outline: none;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ==============================
-   BOTÓN DE ENVÍO
-============================== */
-input[type="submit"] {
-    width: 100%;
-    background-color: #003366;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+/*login y titulo*/
+.login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
-input[type="submit"]:hover {
-    background-color: #00509e;
-    transform: scale(1.03);
+.logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff, #427da7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: logoGlow 3s ease-in-out infinite;
 }
 
-/* ==============================
-   TEXTO INFERIOR (REGISTRO)
-============================== */
-p {
-    text-align: center;
-    margin-top: 20px;
-    color: #ffffff;
-    font-size: 0.95rem;
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(66, 125, 167, 0.6));
+  }
 }
 
-p a {
-    color: #ffcc00;
-    text-decoration: none;
-    font-weight: 600;
+.login-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
 }
 
-p a:hover {
-    text-decoration: underline;
+.login-header p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
 }
+
+/* formulario de login */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-group input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #005fc5;
+  box-shadow: 0 0 20px rgba(0, 95, 197, 0.3);
+}
+
+
+/*Opciones recordarme y olvidar contraseña*/
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.5rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #005fc5;
+}
+
+.forgot-password {
+  font-size: 0.85rem;
+  color: #427da7;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #005fc5;
+  text-decoration: underline;
+}
+
+/*boton ingresar*/
+.btn-submit {
+  position: relative;
+  margin-top: 1rem;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #005fc5, #427da7);
+  border: none;
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 30px rgba(0, 95, 197, 0.4);
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 95, 197, 0.6);
+}
+
+.btn-submit:hover::before {
+  left: 100%;
+}
+
+.btn-submit:active {
+  transform: translateY(1px);
+}
+
+/*o*/
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+
+/*REGISTRO*/
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.register-link a {
+  color: #005fc5;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #427da7;
+  text-decoration: underline;
+}
+
+/*mensajes de error*/
+.error-message {
+  display: none;
+  padding: 1rem;
+  background: rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(220, 53, 69, 0.5);
+  border-radius: 10px;
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  animation: shake 0.5s ease;
+}
+
+.error-message.show {
+  display: block;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* boton volver*/
+.back-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 95, 197, 0.5);
+  transform: translateX(-5px);
+}
+
+.back-button::before {
+  content: '←';
+  font-size: 1.2rem;
+}
+
