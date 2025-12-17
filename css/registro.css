@@ -1,111 +1,448 @@
-/* ==============================
-   ESTILOS GENERALES
-============================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background: linear-gradient(to right, #00509e, #003366);
-  color: #333;
-  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: #000000;
+  color: #ffffff;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 1rem;
 }
 
-/* ==============================
-   ENCABEZADO
-============================== */
-h1 {
-  color: #ffffff;
-  font-size: 2rem;
-  margin-bottom: 30px;
+/* Contenedor Principal */
+.register-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(25px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 95, 197, 0.3);
+  animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 95vh;
+  overflow-y: auto;
+}
+
+/* Logo y titulo */
+.register-header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
-/* ==============================
-   FORMULARIO DE REGISTRO
-============================== */
-form {
-  background-color: #ffffff;
-  padding: 40px 50px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 420px;
-  text-align: left;
+.logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  margin-bottom: 0.5rem;
 }
 
-label {
+.register-header h1 {
+  font-size: 1.8rem;
   font-weight: 600;
-  color: #003366;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.register-header p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+}
+
+/* Formulario*/
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.3px;
+}
+
+.form-group input {
   width: 100%;
-  padding: 12px;
-  margin: 8px 0 20px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border-color: #00509e;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
   outline: none;
 }
 
-/* ==============================
-   BOTÓN DE REGISTRO
-============================== */
-input[type="submit"] {
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-group input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #005fc5;
+  box-shadow: 0 0 20px rgba(0, 95, 197, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Validador Visual */
+.form-group input.valid {
+  border-color: #28a745;
+  box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
+}
+
+.form-group input.invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Indicador de validación */
+.validation-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 12px;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.form-group input.valid ~ .validation-icon {
+  opacity: 1;
+}
+
+.form-group input.valid ~ .validation-icon::after {
+  content: '✓';
+  color: #28a745;
+}
+
+.form-group input.invalid ~ .validation-icon::after {
+  content: '✗';
+  color: #dc3545;
+}
+
+/* Medidor de fuerza de contraseña */
+.password-strength {
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.password-strength.show {
+  display: block;
+}
+
+.strength-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+}
+
+.strength-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.strength-fill.weak {
+  width: 33%;
+  background: #dc3545;
+}
+
+.strength-fill.medium {
+  width: 66%;
+  background: #ffc107;
+}
+
+.strength-fill.strong {
   width: 100%;
-  background-color: #003366;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: bold;
+  background: #28a745;
+}
+
+.strength-text {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Terminos */
+.terms-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.terms-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  accent-color: #005fc5;
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 
-input[type="submit"]:hover {
-  background-color: #00509e;
-  transform: scale(1.03);
+.terms-group label {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.4;
 }
 
-/* ==============================
-   ENLACE FINAL
-============================== */
-p {
-  margin-top: 25px;
-  color: #ffffff;
-  font-size: 0.95rem;
-  text-align: center;
-}
-
-p a {
-  color: #ffcc00;
-  font-weight: bold;
+.terms-group label a {
+  color: #427da7;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-p a:hover {
+.terms-group label a:hover {
+  color: #005fc5;
   text-decoration: underline;
 }
 
-/* ==============================
-   RESPONSIVE DESIGN
-============================== */
+/* Boton Registro*/
+.btn-submit {
+  position: relative;
+  margin-top: 1rem;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #005fc5, #427da7);
+  border: none;
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 30px rgba(0, 95, 197, 0.4);
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 95, 197, 0.6);
+}
+
+.btn-submit:hover::before {
+  left: 100%;
+}
+
+.btn-submit:active {
+  transform: translateY(-1px);
+}
+
+.btn-submit:disabled {
+  background: linear-gradient(135deg, #333, #555);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Divisor */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.divider span {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+
+/* Link login*/
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-link a {
+  color: #005fc5;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #427da7;
+  text-decoration: underline;
+}
+
+/* Mensajes Error y Exito */
+.message {
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  animation: slideDown 0.3s ease;
+  display: none;
+}
+
+.message.show {
+  display: block;
+}
+
+.message.error {
+  background: rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(220, 53, 69, 0.5);
+  color: #ff6b6b;
+}
+
+.message.success {
+  background: rgba(40, 167, 69, 0.2);
+  border: 1px solid rgba(40, 167, 69, 0.5);
+  color: #51cf66;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/*Boton volver*/
+.back-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 95, 197, 0.5);
+  transform: translateX(-5px);
+}
+
+.back-button::before {
+  content: '←';
+  font-size: 1.2rem;
+}
+
+
+/* Cursor personalizado*/
+.custom-cursor-register {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease;
+}
+
+.custom-cursor-follower-register {
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.3s ease;
+}
+
+
+/* Particulas de fondo */
+.particles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px) scale(1);
+    opacity: 0;
+  }
+}
