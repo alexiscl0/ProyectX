@@ -1,4 +1,4 @@
-/*Particulas*/
+// Particulas
 function createParticles() {
   const particlesContainer = document.createElement('div');
   particlesContainer.className = 'particles-bg';
@@ -33,9 +33,7 @@ const confirmPasswordInput = document.getElementById('confirmar');
 const termsCheckbox = document.getElementById('terms');
 const submitButton = document.querySelector('.btn-submit');
 
-// ============================================
-// VALIDACIONES
-// ============================================
+// Validaciones
 
 // Validar email
 function validateEmail(email) {
@@ -64,10 +62,6 @@ function calculatePasswordStrength(password) {
   if (strength <= 4) return 'medium';
   return 'strong';
 }
-
-// ============================================
-// VALIDACIÓN EN TIEMPO REAL
-// ============================================
 
 // Crear iconos de validación
 function createValidationIcon(input) {
@@ -125,9 +119,7 @@ function validatePasswordMatch() {
 
 confirmPasswordInput.addEventListener('input', validatePasswordMatch);
 
-// ============================================
-// TOGGLE VISIBILIDAD DE CONTRASEÑAS
-// ============================================
+// Visibilidad de contraseñas
 function createPasswordToggle(input) {
   const toggle = document.createElement('button');
   toggle.type = 'button';
@@ -176,9 +168,7 @@ createValidationIcon(emailInput);
 createValidationIcon(passwordInput);
 createValidationIcon(confirmPasswordInput);
 
-// ============================================
-// MENSAJES
-// ============================================
+// Mensajes
 function showMessage(text, type = 'error') {
   let messageDiv = document.querySelector('.message');
   
@@ -206,92 +196,7 @@ function shakeElement(element) {
   }, 500);
 }
 
-// ============================================
-// MANEJO DEL FORMULARIO
-// ============================================
-if (registerForm) {
-  registerForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    // Obtener valores
-    const nombre = nombreInput.value.trim();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
-    const acceptedTerms = termsCheckbox ? termsCheckbox.checked : true;
-    
-    // Validaciones
-    if (!nombre || !email || !password || !confirmPassword) {
-      showMessage('⚠️ Por favor, completa todos los campos', 'error');
-      return;
-    }
-    
-    if (!validateName(nombre)) {
-      showMessage('⚠️ El nombre debe contener solo letras y al menos 3 caracteres', 'error');
-      shakeElement(nombreInput.parentElement);
-      return;
-    }
-    
-    if (!validateEmail(email)) {
-      showMessage('⚠️ Por favor, ingresa un correo válido', 'error');
-      shakeElement(emailInput.parentElement);
-      return;
-    }
-    
-    if (password.length < 6) {
-      showMessage('⚠️ La contraseña debe tener al menos 6 caracteres', 'error');
-      shakeElement(passwordInput.parentElement);
-      return;
-    }
-    
-    if (password !== confirmPassword) {
-      showMessage('⚠️ Las contraseñas no coinciden', 'error');
-      shakeElement(confirmPasswordInput.parentElement);
-      return;
-    }
-    
-    if (!acceptedTerms && termsCheckbox) {
-      showMessage('⚠️ Debes aceptar los términos y condiciones', 'error');
-      return;
-    }
-    
-    // Verificar fuerza de contraseña
-    const strength = calculatePasswordStrength(password);
-    if (strength === 'weak') {
-      const confirmed = confirm('Tu contraseña es débil. ¿Deseas continuar de todos modos?');
-      if (!confirmed) return;
-    }
-    
-    // Animación de carga
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Registrando...';
-    submitButton.classList.add('loading');
-    
-    // Simular proceso de registro
-    setTimeout(() => {
-      // Aquí irá tu lógica real de registro
-      console.log('Registro exitoso:', { nombre, email, password });
-      
-      // Éxito
-      submitButton.textContent = '✓ ¡Registrado!';
-      submitButton.classList.remove('loading');
-      submitButton.classList.add('success-animation');
-      
-      showMessage('✓ ¡Cuenta creada exitosamente! Redirigiendo...', 'success');
-      
-      // Redirigir después de 2 segundos
-      setTimeout(() => {
-        // window.location.href = 'login.html'; // Descomenta para redirigir
-        console.log('Redirigiendo al login...');
-      }, 2000);
-      
-    }, 2500);
-  });
-}
-
-// ============================================
-// NAVEGACIÓN CON TECLADO
-// ============================================
+// Navegacion con teclado
 const inputs = [nombreInput, emailInput, passwordInput, confirmPasswordInput];
 
 inputs.forEach((input, index) => {
@@ -307,9 +212,7 @@ inputs.forEach((input, index) => {
   });
 });
 
-// ============================================
-// EFECTOS EN INPUTS
-// ============================================
+// Efecto inputs
 inputs.forEach(input => {
   input.addEventListener('focus', function() {
     this.parentElement.style.transform = 'scale(1.01)';
@@ -320,9 +223,7 @@ inputs.forEach(input => {
   });
 });
 
-// ============================================
-// CURSOR PERSONALIZADO
-// ============================================
+//Cursor Personalizado
 function createCustomCursor() {
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor-register';
@@ -370,9 +271,7 @@ function createCustomCursor() {
   });
 }
 
-// ============================================
-// VERIFICAR DISPONIBILIDAD DE EMAIL (simulado)
-// ============================================
+// Verificar disponibilidad de email simulado
 let emailCheckTimeout;
 emailInput.addEventListener('input', function() {
   clearTimeout(emailCheckTimeout);
@@ -385,9 +284,7 @@ emailInput.addEventListener('input', function() {
   }
 });
 
-// ============================================
-// ANIMACIÓN DE ENTRADA
-// ============================================
+// Animacion de entrada
 window.addEventListener('load', () => {
   const container = document.querySelector('.register-container');
   if (container) {
@@ -402,9 +299,7 @@ window.addEventListener('load', () => {
   }
 });
 
-// ============================================
-// HABILITAR/DESHABILITAR BOTÓN
-// ============================================
+// Habilitar y dessabilitar boton
 function checkFormValidity() {
   const nombre = nombreInput.value.trim();
   const email = emailInput.value.trim();
@@ -432,9 +327,7 @@ if (termsCheckbox) {
   termsCheckbox.addEventListener('change', checkFormValidity);
 }
 
-// ============================================
-// INICIALIZAR TODO
-// ============================================
+// Inicializar todo
 document.addEventListener('DOMContentLoaded', () => {
   createParticles();
   createGradients();
@@ -447,41 +340,97 @@ document.addEventListener('DOMContentLoaded', () => {
 // Deshabilitar scroll
 document.body.style.overflow = 'hidden';
 
-// ============================================
-// EFECTO RIPPLE EN BOTÓN
-// ============================================
-submitButton?.addEventListener('click', function(e) {
-  if (this.disabled) return;
-  
-  const ripple = document.createElement('span');
-  ripple.style.cssText = `
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    width: 10px;
-    height: 10px;
-    animation: rippleEffect 0.6s ease-out;
-    pointer-events: none;
-  `;
-  
-  const rect = this.getBoundingClientRect();
-  ripple.style.left = (e.clientX - rect.left - 5) + 'px';
-  ripple.style.top = (e.clientY - rect.top - 5) + 'px';
-  
-  this.appendChild(ripple);
-  
-  setTimeout(() => ripple.remove(), 600);
-});
+// Servidor python
+const API_URL = 'http://localhost:5000/api';
 
-// Agregar estilos para ripple
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes rippleEffect {
-    to {
-      width: 300px;
-      height: 300px;
-      opacity: 0;
+if (registerForm) {
+  registerForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const nombre = nombreInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+    const acceptedTerms = termsCheckbox ? termsCheckbox.checked : true;
+    
+    // Validaciones
+    if (!nombre || !email || !password || !confirmPassword) {
+      showMessage('Por favor, completa todos los campos', 'error');
+      return;
     }
-  }
-`;
-document.head.appendChild(style);
+    
+    if (!validateName(nombre)) {
+      showMessage('El nombre debe contener solo letras y al menos 3 caracteres', 'error');
+      shakeElement(nombreInput.parentElement);
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      showMessage('Por favor, ingresa un correo válido', 'error');
+      shakeElement(emailInput.parentElement);
+      return;
+    }
+    
+    if (password.length < 6) {
+      showMessage('La contraseña debe tener al menos 6 caracteres', 'error');
+      shakeElement(passwordInput.parentElement);
+      return;
+    }
+    
+    if (password !== confirmPassword) {
+      showMessage('Las contraseñas no coinciden', 'error');
+      shakeElement(confirmPasswordInput.parentElement);
+      return;
+    }
+    
+    if (!acceptedTerms && termsCheckbox) {
+      showMessage('Debes aceptar los términos y condiciones', 'error');
+      return;
+    }
+    
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Registrando...';
+    submitButton.classList.add('loading');
+    
+    try {
+      const respuesta = await fetch(`${API_URL}/registro`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: nombre,
+          email: email,
+          password: password,
+          telefono: '' 
+        })
+      });
+      
+      const datos = await respuesta.json();
+      
+      if (respuesta.ok) {
+        console.log('Registro exitoso:', datos);
+        
+        submitButton.textContent = '¡Registrado!';
+        submitButton.classList.remove('loading');
+        submitButton.classList.add('success-animation');
+        
+        showMessage('¡Cuenta creada exitosamente! Redirigiendo al login...', 'success');
+        
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 2000);
+        
+      } else {
+        showMessage(datos.error, 'error');
+        submitButton.textContent = originalText;
+        submitButton.classList.remove('loading');
+      }
+      
+    } catch (error) {
+      console.error('Error:', error);
+      showMessage('No se pudo conectar con el servidor. Asegúrate de que esté corriendo (python server.py)', 'error');
+      submitButton.textContent = originalText;
+      submitButton.classList.remove('loading');
+    }
+  });
+}

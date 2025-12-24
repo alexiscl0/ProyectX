@@ -103,58 +103,7 @@ inputs.forEach(input => {
   });
 });
 
-// Manejo de formulario
-if (loginForm) {
-  loginForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-    
-    // Validaciones
-    if (!email || !password) {
-      showError('⚠️ Por favor, completa todos los campos');
-      if (!email) shakeInput(emailInput);
-      if (!password) shakeInput(passwordInput);
-      return;
-    }
-    
-    if (!validateEmail(email)) {
-      showError('⚠️ Por favor, ingresa un correo válido');
-      shakeInput(emailInput);
-      return;
-    }
-    
-    if (password.length < 6) {
-      showError('⚠️ La contraseña debe tener al menos 6 caracteres');
-      shakeInput(passwordInput);
-      return;
-    }
-    
-    // Animación de carga
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Ingresando...';
-    submitButton.classList.add('loading');
-    
-    // Simular proceso de login (aquí irá tu lógica real)
-    setTimeout(() => {
-      // Aquí puedes agregar tu lógica de autenticación
-      console.log('Login exitoso:', { email, password });
-      
-      // Animación de éxito
-      submitButton.textContent = '✓ ¡Bienvenido!';
-      submitButton.classList.remove('loading');
-      submitButton.classList.add('success-animation');
-      
-      // Redirigir después de 1 segundo
-      setTimeout(() => {
-        // window.location.href = 'dashboard.html'; // Descomenta para redirigir
-        console.log('Redirigiendo al dashboard...');
-      }, 1000);
-      
-    }, 2000);
-  });
-}
+
 
 // Efecto de tecla
 inputs.forEach(input => {
@@ -170,9 +119,7 @@ inputs.forEach(input => {
   });
 });
 
-// ============================================
-// TOGGLE PASSWORD VISIBILITY (opcional)
-// ============================================
+// Visibilidad de la contraseña
 function createPasswordToggle() {
   const passwordGroup = passwordInput.parentElement;
   const toggleButton = document.createElement('button');
@@ -266,7 +213,6 @@ function createCustomCursor() {
   
   animateFollower();
   
-  // Efecto hover en elementos clicables
   const clickables = document.querySelectorAll('a, button, input[type="submit"], input[type="checkbox"]');
   clickables.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -290,3 +236,82 @@ document.addEventListener('DOMContentLoaded', () => {
   createPasswordToggle();
   createCustomCursor();
 });
+
+// Servidor python
+const API_URL = 'http://localhost:5000/api';
+
+if (loginForm) {
+  loginForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    
+    if (!email || !password) {
+      showError('Por favor, completa todos los campos');
+      if (!email) shakeInput(emailInput);
+      if (!password) shakeInput(passwordInput);
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      showError('Por favor, ingresa un correo válido');
+      shakeInput(emailInput);
+      return;
+    }
+    
+    if (password.length < 6) {
+      showError('La contraseña debe tener al menos 6 caracteres');
+      shakeInput(passwordInput);
+      return;
+    }
+    
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Ingresando...';
+    submitButton.classList.add('loading');
+    
+    try {
+      const respuesta = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      });
+      
+      const datos = await respuesta.json();
+      
+      if (respuesta.ok) {
+        console.log('Login exitoso:', datos);
+        
+        localStorage.setItem('usuario', JSON.stringify(datos.usuario));
+        localStorage.setItem('usuario_id', datos.usuario.id);
+        localStorage.setItem('usuario_nombre', datos.usuario.nombre);
+        
+        submitButton.textContent = '¡Bienvenido!';
+        submitButton.classList.remove('loading');
+        submitButton.classList.add('success-animation');
+        
+        showError('✓ ' + datos.mensaje);
+        
+        setTimeout(() => {
+          window.location.href = 'Sistema.html';
+        }, 1000);
+        
+      } else {
+        showError(datos.error);
+        submitButton.textContent = originalText;
+        submitButton.classList.remove('loading');
+      }
+      
+    } catch (error) {
+      console.error('Error:', error);
+      showError('No se pudo conectar con el servidor. Asegúrate de que esté corriendo (python server.py)');
+      submitButton.textContent = originalText;
+      submitButton.classList.remove('loading');
+    }
+  });
+}
